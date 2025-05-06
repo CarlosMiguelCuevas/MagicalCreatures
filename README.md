@@ -1,0 +1,2 @@
+# MagicalCreatures
+first swift assignment 
