@@ -1,3 +1,5 @@
+//Part 1 and 2
+
 func fibonacciAbility(_ numbrToStopAt: Int) -> Int{
       if numbrToStopAt < 0 {
         return 0
@@ -22,7 +24,11 @@ func fibonacciAbility(_ numbrToStopAt: Int) -> Int{
 
 //Struct definition
 
-struct Dragon {
+protocol Creature {
+    func describeItself() -> String
+}
+
+struct Dragon: Creature {
     private let name: String
     private let description: String
     private let isGood: Bool
@@ -40,9 +46,13 @@ struct Dragon {
     func ability(){
         print("Breath Fire that causes \(abilityPower) pts of damage")
     }
+    
+    func describeItself() -> String {
+        return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
+    }
 }
 
-struct Wizard {
+struct Wizard: Creature {
     private let name: String
     private let description: String
     private let isGood: Bool
@@ -59,9 +69,12 @@ struct Wizard {
     func ability(){
         print("Cast an spell that causes \(abilityPower) pts of damage")
     }
+    func describeItself() -> String {
+        return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
+    }
 }
 
-struct Elf {
+struct Elf: Creature {
     private let name: String
     private let description: String
     private let isGood: Bool
@@ -78,10 +91,13 @@ struct Elf {
     func ability(){
         print("Throws a magic dust that causes \(abilityPower) pts of damage")
     }
+    func describeItself() -> String {
+        return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
+    }
 }
 
 
-struct Fairy {
+struct Fairy: Creature {
     private let name: String
     private let description: String
     private let isGood: Bool
@@ -98,6 +114,9 @@ struct Fairy {
     
     func ability(){
         print("Throws a magic dust that causes \(abilityPower) pts of damage")
+    }
+    func describeItself() -> String{
+        return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
     }
 }
 
@@ -107,8 +126,21 @@ let smaugTheDragon = Dragon(name: "Smaug", descripton: "the magifisent and terri
 let naviTheFary = Fairy(name: "Navi", descripton: "she is known for her constant and sometime annoying cries of 'Hey!'", isGood: true, magicalPower: 1)
 let elf = Elf(name: "Dobby", descripton: "he used to be an salve, but he is no more, he is a free elf", isGood: true, magicalPower: 5)
 
-gandalfTheGrayWizard.ability()
-gandalfTheWhiteWizard.ability()
-smaugTheDragon.ability()
-naviTheFary.ability()
-elf.ability()
+//gandalfTheGrayWizard.ability()
+//gandalfTheWhiteWizard.ability()
+//smaugTheDragon.ability()
+//naviTheFary.ability()
+//elf.ability()
+
+//Part 3
+
+var creatureCatalog: [Creature] = [gandalfTheGrayWizard,gandalfTheWhiteWizard,smaugTheDragon,naviTheFary,elf]
+
+func decribeCreature(_ catalog: [Creature]){
+    for creature in catalog{
+        print(creature.describeItself())
+    }
+}
+
+
+decribeCreature(creatureCatalog)
