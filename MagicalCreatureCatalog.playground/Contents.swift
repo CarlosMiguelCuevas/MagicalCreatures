@@ -26,6 +26,8 @@ func fibonacciAbility(_ numbrToStopAt: Int) -> Int{
 
 protocol Creature {
     func describeItself() -> String
+    func getIsGood() -> Bool
+    func interactsWith(_ otherCreature: Creature)
 }
 
 struct Dragon: Creature {
@@ -50,6 +52,22 @@ struct Dragon: Creature {
     func describeItself() -> String {
         return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
     }
+    
+    func getIsGood() -> Bool {
+        return isGood
+    }
+    func interactsWith(_ otherCreature: Creature){
+        
+        if(!self.isGood){
+            print("I attack, I am evil, i don't care")
+        }else{
+            switch otherCreature.getIsGood(){
+                case true : print("other creature is good, so I won't attack")
+                case false: print("other creature is evil, so I will attack")
+            }
+        }
+       
+    }
 }
 
 struct Wizard: Creature {
@@ -72,6 +90,21 @@ struct Wizard: Creature {
     func describeItself() -> String {
         return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
     }
+    func getIsGood() -> Bool {
+        return isGood
+    }
+    func interactsWith(_ otherCreature: Creature){
+        
+        if(!self.isGood){
+            print("I attack, I am evil, i don't care")
+        }else{
+            switch otherCreature.getIsGood(){
+                case true : print("other creature is good, so I won't attack")
+                case false: print("other creature is evil, so I will attack")
+            }
+        }
+       
+    }
 }
 
 struct Elf: Creature {
@@ -93,6 +126,21 @@ struct Elf: Creature {
     }
     func describeItself() -> String {
         return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
+    }
+    func getIsGood() -> Bool {
+        return isGood
+    }
+    func interactsWith(_ otherCreature: Creature){
+        
+        if(!self.isGood){
+            print("I attack, I am evil, i don't care")
+        }else{
+            switch otherCreature.getIsGood(){
+                case true : print("other creature is good, so I won't attack")
+                case false: print("other creature is evil, so I will attack")
+            }
+        }
+       
     }
 }
 
@@ -117,6 +165,21 @@ struct Fairy: Creature {
     }
     func describeItself() -> String{
         return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is\(magicPower)"
+    }
+    func getIsGood() -> Bool {
+        return isGood
+    }
+    func interactsWith(_ otherCreature: Creature){
+        
+        if(!self.isGood){
+            print("I attack, I am evil, i don't care")
+        }else{
+            switch otherCreature.getIsGood(){
+                case true : print("other creature is good, so I won't attack")
+                case false: print("other creature is evil, so I will attack")
+            }
+        }
+       
     }
 }
 
@@ -144,3 +207,15 @@ func decribeCreature(_ catalog: [Creature]){
 
 
 decribeCreature(creatureCatalog)
+
+//Part 4
+
+func decribeCreatureInteraction(_ catalog: [Creature]){
+    for creature in catalog{
+        for creature2 in catalog{
+            if creature !== creature2{
+                print("\(creature.name) interacts with \(creature2.name)")
+            }
+        }
+    }
+}
