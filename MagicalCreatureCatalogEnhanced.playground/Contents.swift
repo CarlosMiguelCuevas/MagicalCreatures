@@ -44,17 +44,21 @@ class Creature: CreatureProtocol{
         self.abilityPower = fibonacciAbility(magicalPower)
     }
     
+    func getName() -> String {
+        return name
+    }
+    
     func describeItself() -> String {
         return "name: \(name), \(description), \(isGood ? "is good" : "is evil"), its magical power is \(magicPower)"
     }
     
-    func interactsWith(_ otherCreature: Creature){
-        if(!self.isGood){
-            print("I attack, I am evil, i don't care")
+    func interactsWith(_ otherCreature: Creature) -> String{
+        return if(!self.isGood){
+            "I attack, I am evil, i don't care"
         }else{
             switch otherCreature.isGood{
-                case true : print("other creature is good, so I won't attack")
-                case false: print("other creature is evil, so I will attack")
+                case true : "\(otherCreature.getName()) creature is good, so I won't attack"
+                case false: "\(otherCreature.getName()) creature is evil, so I will attack"
             }
         }
     }
@@ -95,12 +99,6 @@ let smaugTheDragon = Dragon(name: "Smaug", descripton: "the magifisent and terri
 let naviTheFary = Fairy(name: "Navi", descripton: "she is known for her constant and sometime annoying cries of 'Hey!'", isGood: true, magicalPower: 1)
 let elf = Elf(name: "Dobby", descripton: "he used to be an salve, but he is no more, he is a free elf", isGood: true, magicalPower: 5)
 
-//gandalfTheGrayWizard.ability()
-//gandalfTheWhiteWizard.ability()
-//smaugTheDragon.ability()
-//naviTheFary.ability()
-//elf.ability()
-
 //Part 3
 
 var creatureCatalog: [Creature] = [gandalfTheGrayWizard,gandalfTheWhiteWizard,smaugTheDragon,naviTheFary,elf]
@@ -115,13 +113,15 @@ decribeCreature(creatureCatalog)
 
 //Part 4
 
-//func decribeCreatureInteraction(_ catalog: [Creature]){
-//    for creature in catalog{
-//        for creature2 in catalog{
-//            if creature !== creature2{
-//                print("\(creature.name) interacts with \(creature2.name)")
-//            }
-//        }
-//    }
-//}
+func decribeCreatureInteraction(_ catalog: [Creature]){
+    for creature in catalog{
+        for creatureInteractingWith in catalog{
+            if (creature !== creatureInteractingWith) {
+                print("I am \(creature.name) and I am facing \(creatureInteractingWith.name) and \(creature.interactsWith(creatureInteractingWith))")
+            }
+        }
+    }
+}
+
+decribeCreatureInteraction(creatureCatalog)
 
